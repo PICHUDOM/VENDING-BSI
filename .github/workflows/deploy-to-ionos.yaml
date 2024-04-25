@@ -47,8 +47,9 @@ jobs:
           CI: true
           SITE_URL: ${{ steps.project.outputs.site-url }}
         run: |
-          npm clean-install
-          npm run build
+          yarn install --frozen=lockfile
+          yarn lint
+          yarn test:ci
           
       - name: Update deployment status
         uses: ionos-deploy-now/project-action@v1
