@@ -1,6 +1,5 @@
 {
-  "name": "VENDING-BSI",
-  "lockfileVersion": 3,
-  "requires": true,
-  "packages": {}
+  "dependencies": {
+    "all": "^0.0.0"
+  }
 }
