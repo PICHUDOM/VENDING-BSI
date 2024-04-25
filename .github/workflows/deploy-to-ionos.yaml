@@ -41,12 +41,6 @@ jobs:
         with:
           node-version: v16.x
 
-      - name: Build PHP assets
-        if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
-        env:
-          MY_ENV_VAR: value-for-my-env-var
-          MY_SECRET_ENV_VAR: ${{ secrets.MY_SECRET }} 
-        run: php artisan key:generate --force -n
         
       - name: Update deployment status
         uses: ionos-deploy-now/project-action@v1
