@@ -8,15 +8,13 @@
 <IfModule mod_rewrite.c>
     # enable the runtime rewrite engine
     RewriteEngine On
-    RewriteBase /
 
-    # stop processing any other rule set if index.html is requested
-    RewriteRule ^index\.html$ - [L]
+    # serve existing files from /public folder as if they were in your base directory
+    RewriteCond %{REQUEST_URI} !public/
+    RewriteRule (.*) /public/$1 [L]
 
-    # route everything else to /index.html
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteRule . /index.php [L]
+    # route everything else to /public/index.php
+    RewriteRule ^ /public/index.php [L]
 </IfModule>
 
 <filesMatch "\.(html|css|js)$">
