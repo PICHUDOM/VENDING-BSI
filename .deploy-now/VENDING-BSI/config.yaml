@@ -17,10 +17,13 @@ deploy:
       - 
     # commands that are executed at the real webspace NOT at build servers BEFORE copying new files
     pre-deployment-remote-commands:
-      - 
+      - echo "starting maintenance mode"
     # commands that are executed at the real webspace NOT at build servers AFTER copying new files
     post-deployment-remote-commands:
-      - 
+      - echo "clearing caches"
+      - php8.0-cli -r "echo 'do something with php again';"
+      - echo "leaving maintenance mode"
+      - echo "back again"
 
 # uncomment the following lines to configure cron jobs
 runtime:
