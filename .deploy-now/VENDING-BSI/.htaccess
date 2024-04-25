@@ -1,9 +1,3 @@
-# check that mod_negotiation is enabled
-<IfModule mod_negotiation.c>
-    # diable MultiViews to prevent the Apache behavior of indexing a directory
-    Options -MultiViews
-</IfModule>
-
 # check that mod_rewrite is enabled
 <IfModule mod_rewrite.c>
     # enable the runtime rewrite engine
