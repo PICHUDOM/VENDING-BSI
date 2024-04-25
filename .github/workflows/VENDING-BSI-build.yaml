@@ -49,8 +49,6 @@ jobs:
           php_version: '8.0.2'
           version: '2'
           args: --optimize-autoloader --no-dev
-        run: |
-          composer require phpmailer/phpmailer
 
       - name: Build PHP assets
 # uncomment the following lines if you want to add environment variables for this step
