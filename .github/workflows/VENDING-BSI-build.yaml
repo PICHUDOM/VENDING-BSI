@@ -48,10 +48,3 @@ jobs:
           folder: ${{ env.DEPLOYMENT_FOLDER }}
           config-file: .deploy-now/VENDING-BSI/config.yaml
           action: upload
-
-# Build PHP 
-      - name: BNuild PHP assets
-        env:
-          MY_ENV_VAR: value-for-my-env-var
-          MY_SECRET_ENV_VAR: ${{ secrets.MY_SECRET }} 
-        run: php artisan key:generate --force -n
