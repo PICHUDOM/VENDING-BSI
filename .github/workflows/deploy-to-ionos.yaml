@@ -38,10 +38,10 @@ jobs:
       - name: Build Node assets
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
         env:
-          CI: true
+          CLI: true
           SITE_URL: ${{ steps.project.outputs.site-url }}
         run: |
-          npm ci
+          npm cli
           npm run build
           
       - name: Setup Node
