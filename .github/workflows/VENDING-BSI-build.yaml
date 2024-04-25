@@ -27,7 +27,14 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: v16.x
-      
+
+      - name: Build Node assets
+        env:
+          CI: true
+          SITE_URL: ${{ steps.project.outputs.site-url }}
+        run: |
+          npm ci
+          npm run build
         
       - name: checkout
         uses: actions/checkout@v3
