@@ -41,7 +41,15 @@ jobs:
         with:
           node-version: v16.x
 
-        
+      - name: Build Node assets
+        if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
+        env:
+          CI: true
+          SITE_URL: ${{ steps.project.outputs.site-url }}
+        run: |
+          npm ci
+          npm run build
+          
       - name: Update deployment status
         uses: ionos-deploy-now/project-action@v1
         with:
