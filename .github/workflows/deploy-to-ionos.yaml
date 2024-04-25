@@ -47,7 +47,7 @@ jobs:
           CI: true
           SITE_URL: ${{ steps.project.outputs.site-url }}
         run: |
-          npm ci --legacy-peer-deps
+          npm clean-install
           npm run build
           
       - name: Update deployment status
