@@ -34,22 +34,22 @@ jobs:
     strategy:
       matrix:
         deployment-id: ${{ fromJson(inputs.deployment-ids) }}
-    steps:
-      - name: Build Node assets
-        if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
-        env:
-          CLI: true
-          SITE_URL: ${{ steps.project.outputs.site-url }}
-        run: |
-          npm cli
-          npm run build
-          
+    steps:          
       - name: Setup Node
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
         uses: actions/setup-node@v1
         with:
           node-version: v16.x
 
+      - name: Build Node assets
+        if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
+        env:
+          CI: true
+          SITE_URL: ${{ steps.project.outputs.site-url }}
+        run: |
+          npm ci
+          npm run build
+          
       - name: Build PHP assets
         if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
         env:
