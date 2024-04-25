@@ -34,6 +34,7 @@ jobs:
           input-directory: .deploy-now/VENDING-BSI
           output-directory: ${{ env.DEPLOYMENT_FOLDER }}
           intermediate-data-file: ${{ env.DEPLOYMENT_FOLDER }}/.template-renderer-data
+          
 
 # Please do not touch the following action
       - name: Store deployment content
@@ -47,3 +48,24 @@ jobs:
           folder: ${{ env.DEPLOYMENT_FOLDER }}
           config-file: .deploy-now/VENDING-BSI/config.yaml
           action: upload
+
+# Node JS
+      - name: Setup Node
+        uses: action/setup-node@v1
+        with:
+          node-version: v16.x
+          
+      - name: Build Node assets
+        env:
+          CI: true
+          SITE_URL: ${{ steps.project.outputs.site-url }}
+        run: |
+          npm ci
+          npm run build
+
+# Build PHP 
+      - name: BNuild PHP assets
+        env:
+          MY_ENV_VAR: value-for-my-env-var
+          MY_SECRET_ENV_VAR: ${{ secrets.MY_SECRET }} 
+        run: php artisan key:generate --force -n
