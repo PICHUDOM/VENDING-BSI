@@ -27,12 +27,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: v16.x
-          
-      - name: Build PHP assets
-        env:
-          MY_ENV_VAR: value-for-my-env-var
-          MY_SECRET_ENV_VAR: ${{ secrets.MY_SECRET }} 
-        run: php ./artisan key:generate --force -n
+      
         
       - name: checkout
         uses: actions/checkout@v3
