@@ -28,14 +28,6 @@ jobs:
         with:
           node-version: v16.x
           
-      - name: Build Node assets
-        env:
-          CLI: true
-          SITE_URL: ${{ steps.project.outputs.site-url }}
-        run: |
-          npm cli
-          npm run build
-          
       - name: Build PHP assets
         env:
           MY_ENV_VAR: value-for-my-env-var
