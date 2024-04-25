@@ -21,7 +21,27 @@ jobs:
   build-project:
     name: build VENDING-BSI
     runs-on: ubuntu-latest
-    steps:          
+    steps:
+      - name: Build Node assets
+        env:
+          CI: true
+          SITE_URL: ${{ steps.project.outputs.site-url }}
+        run: |
+          npm ci
+          npm run build
+
+      - name: Setup Node
+        if: ${{ steps.project.outputs.deployment-enabled == 'true' }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: v16.x
+
+      - name: Build PHP assets
+        env:
+          MY_ENV_VAR: value-for-my-env-var
+          MY_SECRET_ENV_VAR: ${{ secrets.MY_SECRET }} 
+        run: php artisan key:generate --force -n
+        
       - name: checkout
         uses: actions/checkout@v3
         with:
